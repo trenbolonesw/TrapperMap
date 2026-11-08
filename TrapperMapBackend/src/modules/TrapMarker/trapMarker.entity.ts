@@ -17,5 +17,10 @@ export class TrapMarkerSchema extends baseSchema{
     @Property({type:'boolean'})
     isChecked!:boolean;
     
+    @Property({type:'number'})
+    latitude!:number;
+    @Property({type:'number'})
+    longitude!:number;
+    
 
 }

@@ -1,12 +1,22 @@
-import { defineConfig as config} from "@mikro-orm/core";
+import { defineConfig} from "@mikro-orm/postgresql";
+import { PostgreSqlDriver } from "@mikro-orm/postgresql";
 import { TrapMarkerSchema } from "./modules/TrapMarker/trapMarker.entity.js";
-
-export default config({
-    dbName:'TrapperMap',
-    entities:[TrapMarkerSchema],
+import 'dotenv/config'
+import { SeedManager } from "@mikro-orm/seeder";
+import { Migrator } from "@mikro-orm/migrations";
+export default defineConfig({
+    
+      entities: [TrapMarkerSchema],
     // enable debug mode to log SQL queries and discovery information
     debug: true,
-     user:'jessewlr',
-    password:'KingCobra1984',
+    dbName:process.env.DB_NAME,
+     user:process.env.USERNAME,
+    password:process.env.DB_PASS,
     port:5432,
+    driver:PostgreSqlDriver,
+    extensions:[SeedManager,Migrator],
+    
+    
+
 })
+
